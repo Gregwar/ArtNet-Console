@@ -20,6 +20,7 @@ ArtnetConsole::ArtnetConsole(QWidget *parent) :
 
     // Connects the ArtNet init button to the initialize slot
     QObject::connect(ui->initButton, SIGNAL(clicked()), this, SLOT(initialize()));
+    QObject::connect(ui->disconnectButton, SIGNAL(clicked()), this, SLOT(disconnect()));
 
     // Connects the Clear button
     QObject::connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
@@ -43,18 +44,21 @@ void ArtnetConsole::initialize()
 {
     // Initialize the Art-Net manager
     ui->statusLabel->setStyleSheet("");
-    if (ui->enableSending->checkState()) {
-        if (manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt(), ui->alwaysBroadcast->checkState())) {
-            ui->statusLabel->setStyleSheet("color: green");
-            ui->statusLabel->setText("Art-Net initialized");
-        } else {
-            ui->statusLabel->setStyleSheet("color: red");
-            ui->statusLabel->setText("Art-Net cannot be initialized ("+manager.getError()+")");
-        }
+    if (manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt(), ui->alwaysBroadcast->checkState())) {
+        ui->statusLabel->setStyleSheet("color: green");
+        ui->statusLabel->setText("Art-Net initialized");
     } else {
-        manager.stop();
-        ui->statusLabel->setText("Disconnected");
+        ui->statusLabel->setStyleSheet("color: red");
+        ui->statusLabel->setText("Art-Net cannot be initialized ("+manager.getError()+")");
     }
+}
+
+
+void ArtnetConsole::disconnect()
+{
+    manager.stop();
+    ui->statusLabel->setStyleSheet("");
+    ui->statusLabel->setText("Disconnected");
 }
 
 void ArtnetConsole::changed(int channelNumber, int newValue)
@@ -90,3 +94,4 @@ void ArtnetConsole::sendOnEveryChanged(QString value)
     sendOnEvery = value.toInt();
     ui->sendOnEvery->setText(QString("%1").arg(sendOnEvery));
 }
+

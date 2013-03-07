@@ -22,6 +22,7 @@ public:
 
 public slots:
     void initialize();
+    void disconnect();
     void changed(int channelNumber, int newValue);
     void clear();
     void sendOnNbChanged(QString value);
