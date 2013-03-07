@@ -24,7 +24,7 @@ public slots:
     void textChanged(QString value);
 
 signals:
-    void changed(int channelNumber);
+    void changed(int channelNumber, int newValue);
 
 private:
     int channelNumber;

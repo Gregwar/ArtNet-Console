@@ -22,7 +22,7 @@ public:
 
 public slots:
     void initialize();
-    void changed(int channelNumber);
+    void changed(int channelNumber, int newValue);
 
 private:
     Ui::ArtnetConsole *ui;

@@ -22,10 +22,11 @@ ConsoleChannel::~ConsoleChannel()
 
 void ConsoleChannel::valueChanged(int newValue)
 {
+    // Updates the value of the channel
     ui->value->setText(QString("%1").arg(newValue));
     ui->slider->setValue(newValue);
     value = newValue;
-    changed(channelNumber);
+    changed(channelNumber, newValue);
 }
 
 void ConsoleChannel::setChannelNumber(int channelNumber_)

@@ -5,6 +5,9 @@
 #include <QTimer>
 #include <artnet/artnet.h>
 
+/**
+ * Manages the connection with the ArtNet layer, using the libartnet API
+ */
 class ArtnetManager : public QObject
 {
     Q_OBJECT
