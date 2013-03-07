@@ -23,6 +23,7 @@ public:
 public slots:
     void initialize();
     void changed(int channelNumber, int newValue);
+    void clear();
 
 private:
     Ui::ArtnetConsole *ui;

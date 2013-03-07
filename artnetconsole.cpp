@@ -16,8 +16,11 @@ ArtnetConsole::ArtnetConsole(QWidget *parent) :
         QObject::connect(cchannel, SIGNAL(changed(int,int)), this, SLOT(changed(int,int)));
     }
 
-    // Connect the ArtNet init button to the initialize slot
+    // Connects the ArtNet init button to the initialize slot
     QObject::connect(ui->initButton, SIGNAL(clicked()), this, SLOT(initialize()));
+
+    // Connects the Clear button
+    QObject::connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
 }
 
 ArtnetConsole::~ArtnetConsole()
@@ -51,4 +54,12 @@ void ArtnetConsole::initialize()
 void ArtnetConsole::changed(int channelNumber, int newValue)
 {
     manager.updateValue(channelNumber, newValue);
+}
+
+void ArtnetConsole::clear()
+{
+    for (map<int, ConsoleChannel *>::iterator it=channels.begin(); it != channels.end(); it++) {
+        ConsoleChannel *cchannel =(*it).second;
+        cchannel->valueChanged(0);
+    }
 }

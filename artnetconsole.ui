@@ -24,7 +24,7 @@
        <string notr="true">background-color: #fafafa</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -129,7 +129,7 @@
        <attribute name="title">
         <string>Console</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QScrollArea" name="consoleArea">
           <property name="widgetResizable">
@@ -141,7 +141,7 @@
              <x>0</x>
              <y>0</y>
              <width>622</width>
-             <height>353</height>
+             <height>324</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -150,6 +150,13 @@
             </item>
            </layout>
           </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="clearButton">
+          <property name="text">
+           <string>Clear</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -164,7 +171,7 @@
      <x>0</x>
      <y>0</y>
      <width>664</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="styleSheet">
