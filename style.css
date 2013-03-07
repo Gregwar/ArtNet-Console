@@ -1,0 +1,8 @@
+QMainWindow {
+    color:red;
+    border:1px solid dotted;
+    background-image:url(:imgs/images/fade.jpg);
+    background-repeat:repeat-x;
+    background-color:white;
+}
+

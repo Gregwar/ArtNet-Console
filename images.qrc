@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>images/audio_console.png</file>
+        <file>style.css</file>
+        <file>images/fade.jpg</file>
+    </qresource>
+</RCC>

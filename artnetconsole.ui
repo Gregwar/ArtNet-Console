@@ -6,22 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
+    <width>835</width>
     <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ArtnetConsole</string>
+   <string>Art-Net Console</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/imgs/images/audio_console.png</normaloff>:/imgs/images/audio_console.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #eee;</string>
+   <string notr="true">font-size:16px;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #fafafa</string>
+       <string notr="true">background-image: none;background-color: #fafafa</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -98,8 +108,7 @@
          <widget class="QLabel" name="statusLabel">
           <property name="font">
            <font>
-            <weight>75</weight>
-            <bold>true</bold>
+            <pointsize>-1</pointsize>
            </font>
           </property>
           <property name="text">
@@ -144,8 +153,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>622</width>
-             <height>322</height>
+             <width>793</width>
+             <height>314</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -231,8 +240,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>664</width>
-     <height>23</height>
+     <width>835</width>
+     <height>26</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -254,7 +263,9 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>

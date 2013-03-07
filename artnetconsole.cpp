@@ -1,3 +1,5 @@
+#include <QFile>
+#include <QMessageBox>
 #include "artnetconsole.h"
 #include "ui_artnetconsole.h"
 
@@ -8,6 +10,12 @@ ArtnetConsole::ArtnetConsole(QWidget *parent) :
     ui(new Ui::ArtnetConsole)
 {
     ui->setupUi(this);
+
+    QFile file(":/imgs/style.css");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QString(file.readAll());
+    setStyleSheet(styleSheet);
+    file.close();
 
     // Set up the channel sliders
     for (int i = 0; i < ARTNETMANAGER_CHANNELS; i++) {

@@ -23,3 +23,9 @@ FORMS    += artnetconsole.ui \
     consolechannel.ui
 
 LIBS += -lartnet
+
+RESOURCES += \
+    images.qrc
+
+OTHER_FILES += \
+    style.css
