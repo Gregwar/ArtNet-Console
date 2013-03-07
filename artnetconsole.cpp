@@ -30,7 +30,7 @@ ArtnetConsole::~ArtnetConsole()
 void ArtnetConsole::initialize()
 {
     if (ui->enableSending->checkState()) {
-        manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt());
+        manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt(), ui->alwaysBroadcast->checkState());
     } else {
         manager.stop();
     }

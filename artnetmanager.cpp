@@ -28,7 +28,7 @@ void ArtnetManager::stop()
     }
 }
 
-void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_)
+void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_, bool alwaysBroadcast)
 {
     const char *ipAddr = NULL;
 
@@ -44,7 +44,11 @@ void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_)
     artnet_set_short_name(node, "ArtNet console");
     artnet_set_long_name(node, "ArtNet console");
     artnet_set_node_type(node, ARTNET_SRV);
-    artnet_set_bcast_limit(node, 10);
+    if (alwaysBroadcast) {
+        artnet_set_bcast_limit(node, 0);
+    } else {
+        artnet_set_bcast_limit(node, 10);
+    }
 
     artnet_set_port_type(node, 0, ARTNET_ENABLE_INPUT, ARTNET_PORT_DMX);
     artnet_set_port_addr(node, 0, ARTNET_INPUT_PORT, universe);

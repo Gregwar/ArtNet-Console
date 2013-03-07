@@ -14,7 +14,7 @@ public:
     ~ArtnetManager();
 
     void stop();
-    void initialize(QString ipAddress, int frequency, int universe);
+    void initialize(QString ipAddress, int frequency, int universe, bool alwaysBroadcast);
     void updateValue(int channel, int value);
 
 public slots:

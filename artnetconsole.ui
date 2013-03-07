@@ -55,7 +55,7 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
+        <item row="5" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QCheckBox" name="enableSending">
@@ -83,10 +83,17 @@
           </item>
          </layout>
         </item>
-        <item row="5" column="0">
+        <item row="6" column="0">
          <widget class="QPushButton" name="initButton">
           <property name="text">
            <string>Initialize the artnet connection</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QCheckBox" name="alwaysBroadcast">
+          <property name="text">
+           <string>Always broadcast (if not Artnet 2)</string>
           </property>
          </widget>
         </item>
@@ -107,8 +114,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>620</width>
-             <height>361</height>
+             <width>622</width>
+             <height>353</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -131,7 +138,7 @@
      <x>0</x>
      <y>0</y>
      <width>664</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="styleSheet">
