@@ -7,7 +7,7 @@ using namespace std;
 ConsoleChannel::ConsoleChannel(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ConsoleChannel),
-    value(0)
+    value(-1)
 {
     ui->setupUi(this);
     QObject::connect(ui->slider, SIGNAL(valueChanged(int)), this, SLOT(valueChanged(int)));
@@ -22,11 +22,7 @@ ConsoleChannel::~ConsoleChannel()
 
 void ConsoleChannel::valueChanged(int newValue)
 {
-    // Updates the value of the channel
-    ui->value->setText(QString("%1").arg(newValue));
-    ui->slider->setValue(newValue);
-    value = newValue;
-    changed(channelNumber, newValue);
+    updateValue(newValue);
 }
 
 void ConsoleChannel::setChannelNumber(int channelNumber_)
@@ -43,4 +39,18 @@ void ConsoleChannel::textChanged(QString value)
 int ConsoleChannel::getValue()
 {
     return value;
+}
+
+void ConsoleChannel::updateValue(int newValue, bool raise)
+{
+    if (newValue != value) {
+        // Updates the value of the channel
+        value = newValue;
+        ui->value->setText(QString("%1").arg(newValue));
+        ui->slider->setValue(newValue);
+
+        if (raise) {
+            changed(channelNumber, newValue);
+        }
+    }
 }

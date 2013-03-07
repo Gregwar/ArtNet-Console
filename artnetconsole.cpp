@@ -3,6 +3,8 @@
 
 ArtnetConsole::ArtnetConsole(QWidget *parent) :
     QMainWindow(parent),
+    sendOnNb(1),
+    sendOnEvery(1),
     ui(new Ui::ArtnetConsole)
 {
     ui->setupUi(this);
@@ -21,6 +23,10 @@ ArtnetConsole::ArtnetConsole(QWidget *parent) :
 
     // Connects the Clear button
     QObject::connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
+
+    // Connects the Send On & Every
+    QObject::connect(ui->sendOnNb, SIGNAL(textChanged(QString)), this, SLOT(sendOnNbChanged(QString)));
+    QObject::connect(ui->sendOnEvery, SIGNAL(textChanged(QString)), this, SLOT(sendOnEveryChanged(QString)));
 }
 
 ArtnetConsole::~ArtnetConsole()
@@ -53,7 +59,16 @@ void ArtnetConsole::initialize()
 
 void ArtnetConsole::changed(int channelNumber, int newValue)
 {
-    manager.updateValue(channelNumber, newValue);
+    int i;
+
+    for (i=0; i<sendOnNb; i++) {
+        int channel = channelNumber + sendOnEvery*i;
+        if (channel > ARTNETMANAGER_CHANNELS) {
+            break;
+        }
+        manager.updateValue(channel, newValue);
+        channels[channel]->updateValue(newValue, false);
+    }
 }
 
 void ArtnetConsole::clear()
@@ -62,4 +77,16 @@ void ArtnetConsole::clear()
         ConsoleChannel *cchannel =(*it).second;
         cchannel->valueChanged(0);
     }
+}
+
+void ArtnetConsole::sendOnNbChanged(QString value)
+{
+    sendOnNb = value.toInt();
+    ui->sendOnNb->setText(QString("%1").arg(sendOnNb));
+}
+
+void ArtnetConsole::sendOnEveryChanged(QString value)
+{
+    sendOnEvery = value.toInt();
+    ui->sendOnEvery->setText(QString("%1").arg(sendOnEvery));
 }

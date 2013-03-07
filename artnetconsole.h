@@ -24,8 +24,12 @@ public slots:
     void initialize();
     void changed(int channelNumber, int newValue);
     void clear();
+    void sendOnNbChanged(QString value);
+    void sendOnEveryChanged(QString value);
 
 private:
+    int sendOnNb;
+    int sendOnEvery;
     Ui::ArtnetConsole *ui;
     map<int, ConsoleChannel *> channels;
     ArtnetManager manager;

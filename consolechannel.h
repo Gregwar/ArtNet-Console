@@ -16,8 +16,9 @@ public:
     ~ConsoleChannel();
 
     void setChannelNumber(int channelNumber);
-
     int getValue();
+
+    void updateValue(int newValue, bool raise = true);
 
 public slots:
     void valueChanged(int newValue);
