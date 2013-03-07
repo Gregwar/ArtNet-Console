@@ -8,7 +8,7 @@ ArtnetConsole::ArtnetConsole(QWidget *parent) :
     ui->setupUi(this);
 
     // Set up the channel sliders
-    for (int i = 0; i < 255; i++) {
+    for (int i = 0; i < ARTNETMANAGER_CHANNELS; i++) {
         ConsoleChannel *cchannel = new ConsoleChannel(ui->consoleArea);
         cchannel->setChannelNumber(i+1);
         ui->consoleChannels->addWidget(cchannel);

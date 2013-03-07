@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <artnet/artnet.h>
 
+#define ARTNETMANAGER_CHANNELS 512
+
 /**
  * Manages the connection with the ArtNet layer, using the libartnet API
  */
@@ -24,7 +26,7 @@ public slots:
     void tick();
 
 protected:
-    char channels[255];
+    char channels[ARTNETMANAGER_CHANNELS];
     int universe;
     QTimer timer;
     artnet_node node;
