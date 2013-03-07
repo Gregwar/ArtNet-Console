@@ -28,7 +28,7 @@ void ArtnetManager::stop()
     }
 }
 
-void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_, bool alwaysBroadcast)
+bool ArtnetManager::initialize(QString ipAddress, int frequency, int universe_, bool alwaysBroadcast)
 {
     const char *ipAddr = NULL;
 
@@ -65,7 +65,17 @@ void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_, 
     if (artnet_start(node) == ARTNET_EOK) {
         artnet_send_poll(node, NULL, ARTNET_TTM_DEFAULT);
         timer.start(1000/frequency);
+        return true;
+    } else {
+        error = QString(artnet_strerror());
     }
+
+    return false;
+}
+
+QString ArtnetManager::getError()
+{
+    return error;
 }
 
 void ArtnetManager::tick()

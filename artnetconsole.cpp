@@ -33,10 +33,18 @@ ArtnetConsole::~ArtnetConsole()
 void ArtnetConsole::initialize()
 {
     // Initialize the Art-Net manager
+    ui->statusLabel->setStyleSheet("");
     if (ui->enableSending->checkState()) {
-        manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt(), ui->alwaysBroadcast->checkState());
+        if (manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt(), ui->alwaysBroadcast->checkState())) {
+            ui->statusLabel->setStyleSheet("color: green");
+            ui->statusLabel->setText("Art-Net initialized");
+        } else {
+            ui->statusLabel->setStyleSheet("color: red");
+            ui->statusLabel->setText("Art-Net cannot be initialized ("+manager.getError()+")");
+        }
     } else {
         manager.stop();
+        ui->statusLabel->setText("Disconnected");
     }
 }
 
