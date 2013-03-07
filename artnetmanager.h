@@ -13,6 +13,7 @@ public:
     ArtnetManager();
     ~ArtnetManager();
 
+    void stop();
     void initialize(QString ipAddress, int frequency, int universe);
     void updateValue(int channel, int value);
 

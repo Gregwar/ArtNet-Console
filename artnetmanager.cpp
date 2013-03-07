@@ -18,15 +18,21 @@ ArtnetManager::~ArtnetManager()
     artnet_destroy(node);
 }
 
-void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_)
+void ArtnetManager::stop()
 {
-    const char *ipAddr = NULL;
-
     timer.stop();
     if (node != NULL) {
         artnet_stop(node);
         artnet_destroy(node);
+        node = NULL;
     }
+}
+
+void ArtnetManager::initialize(QString ipAddress, int frequency, int universe_)
+{
+    const char *ipAddr = NULL;
+
+    stop();
     node = NULL;
     universe = universe_;
 

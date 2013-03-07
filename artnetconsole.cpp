@@ -29,7 +29,11 @@ ArtnetConsole::~ArtnetConsole()
 
 void ArtnetConsole::initialize()
 {
-    manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt());
+    if (ui->enableSending->checkState()) {
+        manager.initialize(ui->ipAddressField->text(), ui->frequency->text().toInt(), ui->universeField->text().toInt());
+    } else {
+        manager.stop();
+    }
 }
 
 void ArtnetConsole::changed(int channelNumber)
